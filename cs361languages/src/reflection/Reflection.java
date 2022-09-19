@@ -4,7 +4,7 @@
 package reflection;
 
 /**
- * @author ADD YOUR NAME 
+ * @author Austin Parris-Powlette
  *
  */
 
@@ -17,6 +17,8 @@ package reflection;
 
 // Complete the code
 
+import circle.ColoredCircle;
+
 import java.lang.reflect.Method;
 
 public class Reflection {
@@ -27,7 +29,8 @@ public class Reflection {
 	 */
 	public void correspondingClass(Object o) {
 		if (o == null)
-			throw new IllegalArgumentException("Object passesd is null");
+			throw new IllegalArgumentException("Object passed is null");
+
 
 		System.out.println("Inspecting class: " + o.getClass().getName());
 	}
@@ -41,11 +44,25 @@ public class Reflection {
 	 */
 	public void inheritanceChain(Object o) {
 		if (o == null)
-			throw new IllegalArgumentException("Object passesd is null");
+			throw new IllegalArgumentException("Object passed is null");
 
 		// TODO To complete
 		// You need to use the EXACT format of the output
 		// Hint: Use the method getSuperClass()
+		System.out.print(o.getClass().getName() + " inherits ");
+		if (!o.getClass().getSuperclass().getName().equals("java.lang.Object")) {
+			System.out.print(o.getClass().getSuperclass().getName() + " inherits ");
+		}
+		if (o.getClass().getSuperclass().getSuperclass() != null && !o.getClass().getSuperclass().getSuperclass().getName().equals("java.lang.Object")) {
+			System.out.print(o.getClass().getSuperclass().getSuperclass().getName() + " inherits ");
+		}
+		System.out.println("from java.lang.Object");
+
+		System.out.println("\n");
+
+
+
+
 	}
 	
 	/**
@@ -54,7 +71,7 @@ public class Reflection {
 	 */
 	public void listMethods(Object o) {
 		if (o == null)
-			throw new IllegalArgumentException("Object passesd is null");
+			throw new IllegalArgumentException("Object passed is null");
 
 		Method[] m = o.getClass().getMethods();
 
@@ -62,6 +79,9 @@ public class Reflection {
 		// TODO To complete
 		// Print each method on one line
 		// Use this EXACT format
+		for (Method method : m) {
+			System.out.println(method.getName());
+		}
 		System.out.println("\n");
 	}
 
@@ -79,11 +99,19 @@ public class Reflection {
 
 		Reflection r = new Reflection();		
 		
-		// Demonstration of the methods on an objet of type String
+		// Demonstration of the methods on an object of type String
 		// TODO To complete
+		String string = "Pie";
+		r.correspondingClass(string);
+		r.inheritanceChain(string);
+		//r.listMethods(string);
 		
-		// Demonstration of the methods on an objet of type ColoredCircle
-		// TODO To complete		
+		// Demonstration of the methods on an object of type ColoredCircle
+		// TODO To complete
+		ColoredCircle circle = new ColoredCircle();
+		r.correspondingClass(circle);
+		r.inheritanceChain(circle);
+		//r.listMethods(circle);
 	}
 
 }

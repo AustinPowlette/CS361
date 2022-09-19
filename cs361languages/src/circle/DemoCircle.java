@@ -4,7 +4,7 @@
 package circle;
 
 /**
- * @author ADD YOUR NAME
+ * @author Austin Parris-Powlette
  *
  */
 public class DemoCircle {
@@ -57,7 +57,20 @@ public class DemoCircle {
 		// TODO print c2 with toString
 		// TODO make a deep copy of c1 with clone and assign it to c3
 		// TODO write a conditional that checks that c3.equals(c1) is true and print "c3.equals(c1) is true" or "c3.equals(c1) is false" otherwise
-
+		System.out.println(c1);
+		System.out.println(c2);
+		Circle c3 = null;
+		try {
+			c3 = (Circle) c1.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		if (c3.equals(c1)) {
+			System.out.println("c3.equals(c1) is true");
+		}
+		else {
+			System.out.println("c3.equals(c1) is false");
+		}
 	}
 
 }
